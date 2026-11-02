@@ -35,6 +35,9 @@ export default function Login() {
 
       if (response.data?.success && response.data?.data) {
         const userData = response.data.data;
+        if (userData.token) {
+          localStorage.setItem('token', userData.token);
+        }
         login({
           id: userData.id,
           email: userData.email,

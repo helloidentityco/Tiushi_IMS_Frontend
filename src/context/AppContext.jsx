@@ -201,6 +201,9 @@ export function AppProvider({ children }) {
     } catch (err) {
       console.error('Logout failed on backend:', err);
     } finally {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('token');
+      }
       setIsAuthenticated(false);
       setAuthUser(null);
       setCurrentRole('admin');
